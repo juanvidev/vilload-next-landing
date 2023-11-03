@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-// Import react scroll
 import { Link as LinkScroll } from "react-scroll";
 import ButtonOutline from "../misc/ButtonOutline.";
-import LogoVPN from "../../public/assets/Logo.svg";
+import LogoVilload from "../../public/assets/Logo.svg";
+import LogoVilloadWhite from "../../public/assets/LogoWhite.svg";
+import { useTheme } from "flowbite-react";
+import { useTranslation } from "react-i18next";
+import I18nWidget from "../I18nWidget";
+import ClientSideComponent from "../ClienSideComponent";
+import SchemeColorSwitcher from "../SchemeColorSwitcher";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
   const [scrollActive, setScrollActive] = useState(false);
+  const { mode } = useTheme();
+  const { t } = useTranslation("common");
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScrollActive(window.scrollY > 20);
@@ -17,68 +24,72 @@ const Header = () => {
     <>
       <header
         className={
-          "fixed top-0 w-full  z-30 bg-white-500 transition-all " +
-          (scrollActive ? " shadow-md pt-0" : " pt-4")
+          "fixed top-0 w-full z-30 dark:text-white transition-all " +
+          (scrollActive ? " shadow-md bg-white dark:bg-blacks-500 pt-0" : " pt-4")
         }
       >
         <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
           <div className="col-start-1 col-end-2 flex items-center">
-            <LogoVPN className="h-8 w-auto" />
+            {mode === "light" ? (
+              <LogoVilload className="h-6 w-auto" />
+            ) : (
+              <LogoVilloadWhite className="h-6 w-auto" />
+            )}
           </div>
           <ul className="hidden lg:flex col-start-4 col-end-8 text-black-500  items-center">
             <LinkScroll
               activeClass="active"
               to="about"
-              spy={true}
               smooth={true}
               duration={1000}
+              spy={true}
               onSetActive={() => {
                 setActiveLink("about");
               }}
               className={
-                "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative" +
+                "px-4 py-2 mx-2 cursor-pointer hover:text-gold-500 inline-block relative" +
                 (activeLink === "about"
-                  ? " text-orange-500 animation-active "
-                  : " text-black-500 hover:text-orange-500 a")
+                  ? " text-gold-500 dark:text-gold-500 "
+                  : " text-black-500")
               }
             >
-              About
+              {t("nav.about")}
             </LinkScroll>
             <LinkScroll
               activeClass="active"
               to="feature"
-              spy={true}
               smooth={true}
               duration={1000}
+              spy={true}
               onSetActive={() => {
                 setActiveLink("feature");
               }}
               className={
-                "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative" +
+                "px-4 py-2 mx-2 cursor-pointer hover:text-gold-500 inline-block relative" +
                 (activeLink === "feature"
-                  ? " text-orange-500 animation-active "
-                  : " text-black-500 hover:text-orange-500 ")
+                  ? " text-gold-500 dark:text-gold-500"
+                  : " text-black-500")
               }
             >
-              Feature
+              {t("nav.services")}
             </LinkScroll>
             <LinkScroll
               activeClass="active"
-              to="pricing"
               spy={true}
+              to="pricing"
               smooth={true}
               duration={1000}
               onSetActive={() => {
                 setActiveLink("pricing");
               }}
               className={
-                "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative" +
+                "px-4 py-2 mx-2 cursor-pointer hover:text-gold-500 inline-block relative" +
                 (activeLink === "pricing"
-                  ? " text-orange-500 animation-active "
-                  : " text-black-500 hover:text-orange-500 ")
+                  ? " text-gold-500 dark:text-gold-500"
+                  : " text-black-500")
               }
             >
-              Pricing
+              {t("nav.our-work")}
             </LinkScroll>
             <LinkScroll
               activeClass="active"
@@ -90,34 +101,32 @@ const Header = () => {
                 setActiveLink("testimoni");
               }}
               className={
-                "px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative" +
+                "px-4 py-2 mx-2 cursor-pointer hover:text-gold-500 inline-block relative" +
                 (activeLink === "testimoni"
-                  ? " text-orange-500 animation-active "
-                  : " text-black-500 hover:text-orange-500 ")
+                  ? " text-gold-500 dark:text-gold-500"
+                  : " text-black-500 ")
               }
             >
-              Testimonial
+              {t("nav.testimonials")}
             </LinkScroll>
           </ul>
           <div className="col-start-10 col-end-12 font-medium flex justify-end items-center">
-            <Link href="/">
-              <a className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
-                  Sign In
-              </a>
-            </Link>
-            <ButtonOutline>Sign Up</ButtonOutline>
+            <ClientSideComponent>
+              <SchemeColorSwitcher />
+            </ClientSideComponent>
+            <I18nWidget />
+            <ButtonOutline>{t("nav.button")}</ButtonOutline>
           </div>
         </nav>
       </header>
       {/* Mobile Navigation */}
 
-      <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t ">
+      <nav className="fixed lg:hidden bg-white dark:bg-blacks-500 bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t ">
         <div className="bg-white-500 sm:px-3">
           <ul className="flex w-full justify-between items-center text-black-500">
             <LinkScroll
               activeClass="active"
               to="about"
-              spy={true}
               smooth={true}
               duration={1000}
               onSetActive={() => {
@@ -149,7 +158,6 @@ const Header = () => {
             <LinkScroll
               activeClass="active"
               to="feature"
-              spy={true}
               smooth={true}
               duration={1000}
               onSetActive={() => {
@@ -181,7 +189,6 @@ const Header = () => {
             <LinkScroll
               activeClass="active"
               to="pricing"
-              spy={true}
               smooth={true}
               duration={1000}
               onSetActive={() => {
@@ -213,7 +220,6 @@ const Header = () => {
             <LinkScroll
               activeClass="active"
               to="testimoni"
-              spy={true}
               smooth={true}
               duration={1000}
               onSetActive={() => {

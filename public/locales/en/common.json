@@ -1,0 +1,16 @@
+{
+  "title-hero": "Català (Catalan)",
+  "change-locale": "{{changeTo}}",
+  "nav": {
+    "about": "About us",
+    "services": "Services",
+    "our-work": "Our work",
+    "testimonials": "Testimonials",
+    "button": "Get started"
+  },
+  "hero": {
+    "title": "We help you to grow your business",
+    "subtitle": "We build and promote brands through persuasive graphic communication to stand out in a competitive market.",
+    "button": "Get in touch"
+  }
+}

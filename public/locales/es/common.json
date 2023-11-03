@@ -1,0 +1,16 @@
+{
+  "slogan": "Construimos y potenciamos marcas mediante una comunicación gráfica persuasiva para destacar en un mercado competitivo.",
+  "change-locale": "{{changeTo}}",
+  "nav": {
+    "about": "Nosotros",
+    "services": "Servicios",
+    "our-work": "Proyectos",
+    "testimonials": "Testimonios",
+    "button": "Empezar"
+  },
+  "hero": {
+    "title": "Te ayudamos a crecer en tu marca",
+    "subtitle": "Construimos y potenciamos marcas mediante una comunicación gráfica persuasiva para destacar en un mercado competitivo.",
+    "button": "Contáctanos"
+  }
+}
